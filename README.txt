@@ -1,103 +1,105 @@
-TesteCientifiCloud
+# TesteScientificCloud
 
-Este projeto foi desenvolvido como parte do case técnico para a vaga de estágio na ScientificCloud. Ele consiste em uma ferramenta CLI (Command Line Interface) para análise das dimensões de territórios brasileiros, com suporte para consultar a dimensão de um território e comparar as dimensões de dois territórios.
+Este projeto foi desenvolvido como parte do **case técnico para a vaga de estágio na ScientificCloud**.
 
-Funcionalidades
+Ele consiste em uma ferramenta **CLI (Command Line Interface)** para análise das dimensões de territórios brasileiros, com suporte para consultar e comparar dimensões de territórios.
 
-Comando dimensao: Consulta a dimensão de um território (por ID ou nome), exibe o nome, a dimensão e o caminho para o gráfico gerado.
+---
 
-Exemplo: python src/main.py dimensao 35 (consulta a dimensão de São Paulo).
+## ⚙️ Funcionalidades
 
-Comando comparar: Compara as dimensões de dois territórios (por ID ou nome), exibe as dimensões, a diferença e o caminho para o gráfico gerado.
+- **Comando `dimensao`**  
+  Consulta a dimensão de um território (por ID ou nome), exibindo:
+  - Nome do território
+  - Dimensão
+  - Caminho para o gráfico gerado  
 
-Exemplo: python src/main.py comparar 35 33 (compara São Paulo e Rio de Janeiro).
+  **Exemplo:**  
+  ```bash
+  python src/main.py dimensao 35
 
+Comando comparar
+Compara as dimensões de dois territórios (por ID ou nome), exibindo:
 
-Dados são consultados primeiro no banco de dados database.db. Se não houver dados, a API do IBGE é consultada.
+Dimensões individuais
 
-Gráficos de colunas são gerados e salvos no diretório graphs/.
+Diferença
 
-Suporte para entrada por ID ou nome do território (ex.: dimensao 35 ou dimensao "São Paulo").
+Caminho para o gráfico gerado
 
-Requisitos
+Exemplo:
+python src/main.py comparar 35 33
 
-Python 3.6 ou superior (testado com Python 3.10).
+🗂️ Fonte de Dados
+Os dados são consultados primeiro no banco de dados (database.db).
 
-Dependências listadas em requirements.txt.
+Caso o dado não esteja presente, a API do IBGE é consultada automaticamente.
 
-Instalação
+Os gráficos de colunas são gerados e salvos no diretório graphs/.
 
+Suporte a entrada por ID ou nome do território (ex: dimensao 35 ou dimensao "São Paulo").
+
+✅ Requisitos
+Python 3.6 ou superior (testado com Python 3.10)
+
+Dependências listadas em requirements.txt
+
+🚀 Instalação
 Clone o repositório:
-
 git clone <link-do-repositorio>
-cd testecientificcloud
+cd TesteScientificCloud
 
-Crie um ambiente virtual e ative-o:
-
+Crie um ambiente virtual:
 python -m venv teste_env
 
-No Windows (PowerShell):
+Ative o ambiente virtual:
 
+Windows (PowerShell):
 .\teste_env\Scripts\activate
 
-No Linux/Mac ou Git Bash:
-
+Linux/Mac ou Git Bash:
 source teste_env/bin/activate
 
-
 Instale as dependências:
-
 pip install -r requirements.txt
 
-Execute os comandos da CLI, por exemplo:
-
+Execute os comandos da CLI:
 python src/main.py dimensao 35
 python src/main.py comparar 35 33
 
-Estrutura do Projeto
+📁 Estrutura do Projeto
+TesteScientificCloud/
+│
+├── database.db        # Banco de dados SQLite (não incluído no Git)
+├── dict.csv           # Dicionário com IDs e nomes dos territórios
+├── graphs/            # Gráficos gerados (.png)
+├── requirements.txt   # Dependências do projeto
+└── src/
+    ├── main.py        # Script principal da CLI
+    └── teste.py       # Script para testar a API do IBGE
 
-src/: Contém os scripts principais do projeto.
+ℹ️ Notas
+É necessário ter conexão com a internet para a funcionalidade de fallback da API do IBGE.
 
-main.py: Script principal da CLI.
+O arquivo database.db não deve ser alterado e não está incluído no Git, conforme solicitado no enunciado.
 
-teste.py: Script para testar a API do IBGE.
-
-graphs/: Diretório onde os gráficos gerados são salvos.
-
-database.db: Banco de dados SQLite (não incluído no Git).
-
-dict.csv: Dicionário com IDs e nomes dos territórios.
-
-requirements.txt: Lista de dependências do projeto.
-
-Notas
-
-O arquivo database.db não está incluído no controle de versão (conforme exigido pelo case técnico). O programa não altera o banco de dados durante a execução.
-
-Certifique-se de ter conexão com a internet para consultar a API do IBGE, caso os dados não estejam no banco.
-
-Exemplo de Uso
-
+💡 Exemplo de Uso
 Consultar a dimensão de São Paulo:
-
 python src/main.py dimensao 35
 
 Saída esperada:
-
->>> Nome: {São Paulo}
->>> Dimensão: {248219.5}km2
->>> Gráfico: {graphs\dimensao_35.png}
+Nome: São Paulo
+Dimensão: 248219.5 km²
+Gráfico: graphs/dimensao_35.png
 
 Comparar São Paulo e Rio de Janeiro:
-
 python src/main.py comparar 35 33
 
 Saída esperada:
+São Paulo: 248219.5 km²
+Rio de Janeiro: 43696.1 km²
+Diferença: 204523.4 km²
+Gráfico: graphs/comparacao_35_33.png
 
->>> {São Paulo}: {248219.5}km2
->>> {Rio de Janeiro}: {43696.1}km2
->>> Diferença: {204523.4}km2
->>> Gráfico: {graphs\comparacao_35_33.png}
-
-Autor
+👨‍💻 Autor
 Cristiano Silveira
